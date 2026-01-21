@@ -13,14 +13,17 @@ function App() {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [connectionStatus, setConnectionStatus] = useState('checking');
   const messagesEndRef = useRef(null);
+  const chatMessagesRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (chatMessagesRef.current) {
+      chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
+    }
   };
 
   useEffect(() => {
-    // Always scroll to bottom when messages change
-    scrollToBottom();
+    // Scroll to bottom whenever messages change
+    setTimeout(scrollToBottom, 100);
   }, [messages]);
 
   // Check backend connection
@@ -210,7 +213,7 @@ function App() {
         </aside>
 
         <div className="chat-container">
-          <div className="chat-messages">
+          <div className="chat-messages" ref={chatMessagesRef}>
             {messages.map((message, index) => (
               <div key={index} className={`message ${message.role}`}>
                 <div className="message-avatar">
