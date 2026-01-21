@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JARVIS AI Assistant - Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
+            color: white;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .title {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            color: #a0a0c0;
+            font-size: 1.2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-desc {
+            color: #a0a0c0;
+            line-height: 1.6;
+        }
+
+        .demo-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .code-block {
+            background: #1a1a3e;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .command {
+            color: #00f2fe;
+            margin: 0.5rem 0;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .tech-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .status-item {
+            background: rgba(0, 242, 254, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #00f2fe;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="header">
+            <h1 class="title">🤖 JARVIS AI Assistant</h1>
+            <p class="subtitle">Your Personal AI Assistant - Powered by LLaMA & Pinecone</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3 class="feature-title">Self-Hosted LLM</h3>
+                <p class="feature-desc">Run LLaMA locally using Ollama. Your data never leaves your infrastructure.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3 class="feature-title">Vector Database</h3>
+                <p class="feature-desc">Pinecone integration for semantic search and knowledge retrieval.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3 class="feature-title">Beautiful UI</h3>
+                <p class="feature-desc">Modern chatbot interface with glassmorphism and smooth animations.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3 class="feature-title">RAG Pipeline</h3>
+                <p class="feature-desc">Retrieval Augmented Generation for accurate, contextual responses.</p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="section-title">⚡ Quick Start</h2>
+            <div class="code-block">
+                <div class="command"># 1. Install Ollama and pull LLaMA</div>
+                <div class="command">ollama pull llama2</div>
+                <div class="command">ollama serve</div>
+                <div class="command"></div>
+                <div class="command"># 2. Run setup script</div>
+                <div class="command">setup.bat</div>
+                <div class="command"></div>
+                <div class="command"># 3. Start the application</div>
+                <div class="command">start.bat</div>
+            </div>
+            <p style="color: #a0a0c0; margin-top: 1rem;">
+                The application will be available at <strong style="color: #00f2fe;">http://localhost:5173</strong>
+            </p>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="section-title">🛠️ Technology Stack</h2>
+            <div class="tech-stack">
+                <span class="tech-badge">React 18</span>
+                <span class="tech-badge">Vite</span>
+                <span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">Python 3.8+</span>
+                <span class="tech-badge">Ollama</span>
+                <span class="tech-badge">LLaMA 2</span>
+                <span class="tech-badge">Pinecone</span>
+                <span class="tech-badge">SentenceTransformers</span>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="section-title">✅ System Status</h2>
+            <div class="status-grid">
+                <div class="status-item">
+                    <span class="status-dot"></span>
+                    <span>Frontend Ready</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-dot"></span>
+                    <span>Backend API</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-dot"></span>
+                    <span>LLaMA Model</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-dot"></span>
+                    <span>Vector Database</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="section-title">📖 Key Features</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    ✓ Natural language understanding and contextual conversations
+                </li>
+                <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    ✓ Document upload and automatic knowledge base creation
+                </li>
+                <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    ✓ Semantic search with vector embeddings
+                </li>
+                <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    ✓ Retrieval Augmented Generation (RAG) for accurate responses
+                </li>
+                <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    ✓ Beautiful, responsive UI with glassmorphism design
+                </li>
+                <li style="padding: 0.75rem 0;">
+                    ✓ Complete privacy with self-hosted AI
+                </li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="README.md" class="cta-button">📚 View Documentation</a>
+            <a href="QUICKSTART.md" class="cta-button" style="margin-left: 1rem;">🚀 Get Started</a>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem; color: #a0a0c0;">
+            <p>Built with ❤️ for the AI community</p>
+            <p style="margin-top: 0.5rem;">Duration: 40 minutes | Tool: VS Code + Co-pilot</p>
+        </div>
+    </div>
+</body>
+</html>

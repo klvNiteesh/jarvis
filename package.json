@@ -1,0 +1,25 @@
+{
+  "name": "jarvis-ai-assistant",
+  "version": "1.0.0",
+  "description": "Personal AI Assistant powered by LLaMA and Pinecone",
+  "main": "index.js",
+  "scripts": {
+    "setup": "cd frontend && npm install && cd ../backend && pip install -r requirements.txt",
+    "dev": "concurrently \"cd backend && python app.py\" \"cd frontend && npm run dev\"",
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend && python app.py"
+  },
+  "keywords": [
+    "ai",
+    "llama",
+    "chatbot",
+    "pinecone",
+    "vector-database",
+    "rag"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
