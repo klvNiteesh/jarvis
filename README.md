@@ -1,16 +1,16 @@
 # 🤖 JARVIS - Personal AI Assistant
 
-![Jarvis AI](https://img.shields.io/badge/AI-Powered-purple?style=for-the-badge)
-![LLaMA](https://img.shields.io/badge/LLaMA-Model-blue?style=for-the-badge)
-![Pinecone](https://img.shields.io/badge/Pinecone-Vector_DB-green?style=for-the-badge)
+![JARVIS](https://img.shields.io/badge/AI-Powered-purple?style=for-the-badge)
+![Gemini](https://img.shields.io/badge/Gemini-2.0_Flash-blue?style=for-the-badge)
+![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector_DB-green?style=for-the-badge)
 
-A powerful personal AI assistant powered by **self-hosted LLaMA** (via Ollama), with **Pinecone vector database** for knowledge storage and retrieval, featuring a beautiful conversational chatbot UI.
+A powerful personal AI assistant powered by **Google Gemini 2.0 Flash**, with **ChromaDB vector database** for knowledge storage and retrieval, featuring a beautiful conversational chatbot UI.
 
 ## ✨ Features
 
-- 🧠 **Self-Hosted LLaMA Model** - Run AI locally using Ollama
-- 📚 **Vector Database Integration** - Pinecone for semantic search and RAG
-- 💬 **Conversational Interface** - Beautiful, responsive chatbot UI
+- 🧠 **Gemini 2.0 Flash AI** - Latest Google AI model
+- 📚 **ChromaDB Vector Database** - Local semantic search and RAG
+- 💬 **Beautiful Conversational UI** - Modern, responsive chatbot interface
 - 📄 **Document Processing** - Upload and process documents for knowledge base
 - 🔍 **Contextual Responses** - Retrieval Augmented Generation (RAG)
 - 🎨 **Premium Design** - Glassmorphism, gradients, and smooth animations
@@ -18,16 +18,16 @@ A powerful personal AI assistant powered by **self-hosted LLaMA** (via Ollama), 
 ## 🏗️ Architecture
 
 ```
-┌─────────────────┐      ┌──────────────────┐      ┌─────────────────┐
-│   React UI      │ ───▶ │  FastAPI Backend │ ───▶ │  Ollama/LLaMA   │
-│  (Frontend)     │ ◀─── │    (Python)      │ ◀─── │   (Local AI)    │
-└─────────────────┘      └──────────────────┘      └─────────────────┘
-                                  │
-                                  ▼
-                         ┌─────────────────┐
-                         │    Pinecone     │
-                         │  (Vector DB)    │
-                         └─────────────────┘
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   React UI      │────▶│  FastAPI Server │────▶│  Gemini 2.0     │
+│  (Frontend)     │     │   (Backend)     │     │   Flash AI      │
+└─────────────────┘     └────────┬────────┘     └─────────────────┘
+                                 │
+                                 ▼
+                        ┌─────────────────┐
+                        │    ChromaDB     │
+                        │  (Vector Store) │
+                        └─────────────────┘
 ```
 
 ## 🚀 Quick Start
@@ -36,69 +36,54 @@ A powerful personal AI assistant powered by **self-hosted LLaMA** (via Ollama), 
 
 - **Node.js** (v18 or higher)
 - **Python** (3.8 or higher)
-- **Ollama** (for LLaMA model)
+- **Gemini API Key** (free from Google)
 
-### Step 1: Install Ollama and LLaMA
+### Step 1: Get Gemini API Key (FREE)
 
-```bash
-# Install Ollama from https://ollama.ai/
+1. Go to: **https://makersuite.google.com/app/apikey**
+2. Click **"Create API Key"**
+3. Copy the API key
 
-# Pull LLaMA model
-ollama pull llama2
-
-# Start Ollama server (if not already running)
-ollama serve
-```
-
-### Step 2: Setup Backend
+### Step 2: Clone and Setup
 
 ```bash
-# Navigate to backend directory
+# Clone the repository
+git clone https://github.com/klvNiteesh/jarvis.git
+cd jarvis
+
+# Setup Backend
 cd backend
-
-# Create virtual environment
 python -m venv venv
+venv\Scripts\activate  # Windows
+# source venv/bin/activate  # Mac/Linux
+pip install -r requirements_new.txt
 
-# Activate virtual environment
-# On Windows:
-venv\Scripts\activate
-# On Mac/Linux:
-source venv/bin/activate
+# Configure API Key
+# Edit backend/.env and add:
+GEMINI_API_KEY=your_api_key_here
 
-# Install dependencies
-pip install -r requirements.txt
-
-# (Optional) Configure Pinecone
-# Copy .env.example to .env and add your Pinecone API key
-cp .env.example .env
-# Edit .env and add: PINECONE_API_KEY=your_key_here
-
-# Start backend server
-python app.py
+# Start Backend
+python app_gemini.py
 ```
-
-The backend will be running at `http://localhost:8000`
 
 ### Step 3: Setup Frontend
 
 ```bash
-# Navigate to frontend directory
+# In a new terminal
 cd frontend
-
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
 ```
 
-The frontend will be running at `http://localhost:5173`
+### Step 4: Open the App
+
+Open your browser and go to: **http://localhost:5173**
 
 ## 📖 Usage
 
 1. **Open the app** in your browser at `http://localhost:5173`
 2. **Check system status** in the sidebar to ensure all components are connected
-3. **Start chatting** with Jarvis in the main chat interface
+3. **Start chatting** with JARVIS in the main chat interface
 4. **Upload documents** to add knowledge to the assistant's knowledge base
 5. **Ask questions** and get contextual responses based on uploaded documents
 
@@ -112,48 +97,29 @@ The frontend will be running at `http://localhost:5173`
 
 ### Backend (FastAPI)
 - RESTful API endpoints
-- LLaMA integration via Ollama
-- Vector database integration (Pinecone)
+- Gemini 2.0 Flash integration
+- ChromaDB vector database
 - Document processing and chunking
 - Retrieval Augmented Generation (RAG)
 
 ### AI Stack
-- **LLM**: LLaMA 2 (via Ollama) - Self-hosted
+- **LLM**: Gemini 2.0 Flash (Google AI)
 - **Embeddings**: all-MiniLM-L6-v2 (SentenceTransformers)
-- **Vector DB**: Pinecone (optional, falls back to in-memory)
+- **Vector DB**: ChromaDB (local, persistent)
 
 ## 🔧 Configuration
 
-### Pinecone Setup (Optional)
+### Gemini API Key
 
-1. Sign up for free at [pinecone.io](https://www.pinecone.io/)
-2. Create an API key
-3. Add to `backend/.env`:
+1. Get your free API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Add to `backend/.env`:
    ```
-   PINECONE_API_KEY=your_api_key_here
+   GEMINI_API_KEY=your_api_key_here
    ```
 
-**Note**: The app works without Pinecone using in-memory storage, but Pinecone provides better scalability and persistence.
+### ChromaDB
 
-### Ollama Models
-
-You can use different LLaMA models:
-
-```bash
-# LLaMA 2 (default)
-ollama pull llama2
-
-# LLaMA 3 (if available)
-ollama pull llama3
-
-# Mistral (alternative)
-ollama pull mistral
-```
-
-Update `backend/app.py` line 128 to change the model:
-```python
-model='llama2'  # Change to 'llama3' or 'mistral'
-```
+ChromaDB runs locally and stores data in `backend/chroma_db/`. No additional configuration needed!
 
 ## 📡 API Endpoints
 
@@ -167,7 +133,7 @@ Full API documentation available at `http://localhost:8000/docs`
 ## 🎨 Features Showcase
 
 ### Conversational AI
-- Natural language understanding
+- Natural language understanding with Gemini 2.0 Flash
 - Context-aware responses
 - Conversation history tracking
 
@@ -188,7 +154,7 @@ Full API documentation available at `http://localhost:8000/docs`
 ### Project Structure
 
 ```
-jarvis-ai-assistant/
+jarvis/
 ├── frontend/               # React frontend
 │   ├── src/
 │   │   ├── App.jsx        # Main component
@@ -196,10 +162,12 @@ jarvis-ai-assistant/
 │   │   └── index.css      # Base styles
 │   └── package.json
 ├── backend/               # Python backend
-│   ├── app.py            # FastAPI server
-│   ├── requirements.txt  # Dependencies
-│   └── .env.example      # Environment template
-└── README.md
+│   ├── app_gemini.py     # FastAPI server with Gemini
+│   ├── requirements_new.txt  # Dependencies
+│   ├── .env              # Environment variables
+│   └── chroma_db/        # Vector database storage
+├── README.md
+└── SETUP-GEMINI.md       # Detailed setup guide
 ```
 
 ### Tech Stack
@@ -211,26 +179,25 @@ jarvis-ai-assistant/
 
 **Backend:**
 - FastAPI
-- Ollama (LLaMA)
-- Pinecone
+- Google Gemini 2.0 Flash
+- ChromaDB
 - SentenceTransformers
 
 ## 🐛 Troubleshooting
 
 ### Backend won't connect
-- Ensure Python server is running: `python backend/app.py`
+- Ensure Python server is running: `python app_gemini.py`
 - Check if port 8000 is available
-- Verify CORS settings if accessing from different domain
+- Verify Gemini API key in `.env` file
 
-### Ollama errors
-- Make sure Ollama is installed and running: `ollama serve`
-- Pull the model: `ollama pull llama2`
-- Check Ollama status: `ollama list`
+### Gemini API errors
+- Make sure you have a valid API key
+- Check your API quota at [Google AI Studio](https://makersuite.google.com/)
+- Ensure you're using the correct model name
 
-### Slow responses
-- LLaMA models require significant compute power
-- Consider using smaller models for faster responses
-- Ensure your system meets minimum requirements (8GB RAM recommended)
+### ChromaDB errors
+- Delete `backend/chroma_db/` folder and restart
+- Reinstall ChromaDB: `pip install --upgrade chromadb`
 
 ## 📝 License
 
@@ -238,9 +205,8 @@ MIT License - Feel free to use this project for learning and development!
 
 ## 🙏 Acknowledgments
 
-- **Meta** - LLaMA model
-- **Ollama** - Local LLM serving
-- **Pinecone** - Vector database
+- **Google** - Gemini AI
+- **ChromaDB** - Vector database
 - **FastAPI** - Backend framework
 - **React** - Frontend framework
 
@@ -248,14 +214,48 @@ MIT License - Feel free to use this project for learning and development!
 
 - [ ] Voice input/output
 - [ ] Multi-modal support (images, videos)
-- [ ] Custom model fine-tuning
 - [ ] Advanced RAG techniques
 - [ ] User authentication
 - [ ] Conversation persistence
 - [ ] Mobile app
+- [ ] Multiple language support
+
+## 📊 System Requirements
+
+### Minimum
+- CPU: 4 cores
+- RAM: 8GB
+- Storage: 5GB free
+- OS: Windows 10+, macOS 10.15+, Linux
+
+### Recommended
+- CPU: 8 cores
+- RAM: 16GB
+- Storage: 10GB free
+- Internet: Stable connection for Gemini API
+
+## 🎯 Why This Stack?
+
+| Feature | Benefit |
+|---------|---------|
+| **Gemini 2.0 Flash** | Latest AI model, fast responses, free tier |
+| **ChromaDB** | Local storage, no cloud costs, privacy-first |
+| **FastAPI** | Modern, fast, auto-documented APIs |
+| **React** | Component-based, responsive, beautiful UI |
+
+## 🌟 Star History
+
+If you find this project helpful, please give it a ⭐!
+
+## 📞 Support
+
+For issues and questions:
+- Open an issue on GitHub
+- Check the [Setup Guide](SETUP-GEMINI.md)
+- Review API docs at `http://localhost:8000/docs`
 
 ---
 
-**Built with ❤️ for the AI community**
+**Built with ❤️ by [Niteesh](https://github.com/klvNiteesh)**
 
-*Duration: 40 minutes | Tool: VS Code + Co-pilot*
+*A modern AI assistant for everyone!*
